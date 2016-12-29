@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.yws.mapper.FilmMapper">
+
+	<resultMap type="Film" id="filmRM">
+		<id property="id" column="film_id" />
+		<result property="title" column="title"/>
+		<result property="description" column="description"/>
+		<association property="language" javaType="Language">
+			<id property="id" column="language_id" />
+			<result property="name" column="name"/>
+			<result property="lastUpdate" column="last_update"/>
+		</association>
+	</resultMap>
+	
+	<insert id="insert" parameterType="Film">
+		INSERT INTO film
+			(film_id, title, description, language_id)
+		VALUES
+		(
+			#{id},
+			#{title},
+			#{description},
+			#{language.id}
+		)
+	</insert>
+	
+	
+	
+</mapper>
